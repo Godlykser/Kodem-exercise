@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: get-info
+spec:
+  template:
+    spec:
+      containers:
+      - name: get-info
+        image: busybox
+        command: ['sh', '-c', 'kubectl get all -o custom-columns=name:.metadata.name,type:.kind,namespace:.metadata.namespace,uid:.metadata.uid > ./data.json']
+      restartPolicy: Never
