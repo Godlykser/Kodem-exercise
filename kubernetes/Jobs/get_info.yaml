@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: get-info-job
+  labels:
+    app: get-info
+spec:
+  selector:
+    matchLabels:
+      app: get-info
+  template:
+    metadata:
+      labels:
+        app: get-info
+    spec:
+      containers:
+      - name: get-info
+        image: godlykser/python:1.0.1
+        ports:
+        - containerPort: 80
+      restartPolicy: Never
