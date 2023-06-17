@@ -6,4 +6,8 @@ format containing:
 - namespace of the resource
 - uid of the resource
 
-You can use minikube to deploy and test your workload, and it doesn't matter what other workloads you have in the cluster, as long as you return their information 
+How to use:
+- change directory to kodem-exercise
+- run the command 'kubectl apply -f ./kubernetes/Jobs/get_info.yaml -o json'
+- after job completes, run the command 'kubectl logs job/get-info' to print out the result
+  or the command 'kubectl logs job/get-info > info.json' to print it to json file.

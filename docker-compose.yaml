@@ -3,6 +3,5 @@ services:
   python:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: Kodem-exercise
-    image: godlykser/python:1.0.1
+    container_name: kodem-exercise
+    image: godlykser/kodem-entry-exercise:latest
