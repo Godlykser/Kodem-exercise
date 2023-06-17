@@ -18,9 +18,8 @@ def get_info():
     """
     config.load_incluster_config()  # load local config file and create api access objects
     v1 = client.CoreV1Api()
+    # list to store information
     info = []
-    # set to store info
-
     # get info from all workloads
     get_pod_info(info, v1)
 
@@ -36,12 +35,14 @@ def get_pod_info(info, v1):
     # iterate through all pods and get info
     for pod in pods.items:
         try:
+            # try to get info from pod about owner
             workload = {
                 "name": pod.metadata.owner_references[0].name,
                 "type": pod.metadata.owner_references[0].kind,
                 "namespace": pod.metadata.namespace,
                 "uid": pod.metadata.owner_references[0].uid,
             }
+            # if workload is of type we want, add to list
             if workload["type"] in WORKLOAD_TYPES:
                 info.append(workload)
         except:
